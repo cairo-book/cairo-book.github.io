@@ -61,7 +61,7 @@ function playground_text(playground, hidden = true) {
                         win: "Ctrl-Enter",
                         mac: "Ctrl-Enter"
                     },
-                    exec: _editor => run_rust_code(playground_block)
+                    exec: _editor => run_cairo_code(playground_block)
                 });
             }
         }
@@ -97,6 +97,30 @@ function playground_text(playground, hidden = true) {
         } else {
             play_button.classList.add("hidden");
         }
+    }
+
+    function run_cairo_code(code_block) {
+        var result_block = code_block.querySelector(".result");
+        if (!result_block) {
+            result_block = document.createElement('code');
+            result_block.className = 'result hljs language-bash';
+
+            code_block.append(result_block);
+        }
+
+        let text = playground_text(code_block);
+
+        result_block.innerText = "Running...";
+        window.runFunc(text).then(data => {
+            if (data.trim() === '') {
+                result_block.innerText = "No output";
+                result_block.classList.add("result-no-output");
+            } else {
+                result_block.innerText = data;
+                result_block.classList.remove("result-no-output");
+            }
+        })
+        .catch(error => result_block.innerText = "Playground Communication: " + error.message);
     }
 
     function run_rust_code(code_block) {
@@ -253,7 +277,8 @@ function playground_text(playground, hidden = true) {
 
         buttons.insertBefore(runCodeButton, buttons.firstChild);
         runCodeButton.addEventListener('click', function (e) {
-            run_rust_code(pre_block);
+            // run_rust_code(pre_block);
+            run_cairo_code(pre_block);
         });
 
         if (window.playground_copyable) {
