@@ -42,7 +42,12 @@ jobs:
       - name: Build in English
         run: |
           mdbook build -d book
-
+      
+      - name: Copy WASM-Cairo pkg
+        run: |
+          cp -r theme/pkg book/html
+          cp -r theme/js book/html
+      
       - name: Build all translations
         run: |
           for po_lang in $(cat ./LANGUAGES); do
@@ -55,6 +60,14 @@ jobs:
 
       # - name: Verify Cairo programs
       #   uses: ./.github/workflows/verify-cairo-programs
+      - name: Copy WASM-Cairo pkg
+        run: |
+          for po_lang in $(cat ./LANGUAGES); do
+            echo "::group::Copy WASM-Cairo pkg to $po_lang/html"
+            cp -r theme/pkg book/html/$po_lang
+            cp -r theme/js book/html/$po_lang
+            echo "::endgroup::"
+          done
 
       - name: Setup Pages
         uses: actions/configure-pages@v3

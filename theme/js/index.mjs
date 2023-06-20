@@ -1,5 +1,5 @@
 const maxWorkers = 1
-const worker = new Worker('./worker.cjs')
+const worker = new Worker('js/worker.cjs')
 
 window.runFunc = async (cairo_program) => {
     return new Promise((resolve, reject) => {
