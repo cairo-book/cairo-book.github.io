@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: The Cairo Programming Language\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-06-20 22:39+0900\n"
+"PO-Revision-Date: 2023-06-20 21:24+0900\n"
 "Last-Translator: cryptonerdcn <cryptonerdcn@gmail.com>\n"
 "Language-Team: Language zh-cn\n"
 "Language: zh_CN\n"
@@ -938,7 +938,7 @@ msgstr ""
 "```rust,file=hello_world.cairo\n"
 "use debug::PrintTrait;\n"
 "fn main() {\n"
-"    'Hello, world!'.print();\n"
+"    ‘Hello, world!’.print();\n"
 "}\n"
 "```"
 
@@ -14186,9 +14186,8 @@ msgstr ""
 "```"
 
 #: src/ch99-03-security-considerations.md:51
-#, fuzzy
 msgid ""
-"Using these functions to check conditions adds constraints that help clearly define the boundaries of possible state transitions for each function in your smart contract. These "
+"Using theses functions to check conditions adds constraints that helps clearly define the boundaries of possible state transitions for each function in your smart contract. These "
 "checks ensure that the behavior of the contract stays within the expected limits."
 msgstr "使用这些函数来检查条件会添加约束，有助于清晰地定义智能合约中每个函数可能的状态转换的边界。这些检查确保合约的行为保持在预期范围内。"
 
