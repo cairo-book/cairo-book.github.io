@@ -1,0 +1,14 @@
+{
+  "name": "wasm-cairo",
+  "collaborators": [
+    "cryptonerdcn <cryptonerdcn@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "wasm-cairo_bg.wasm",
+    "wasm-cairo.js",
+    "wasm-cairo.d.ts"
+  ],
+  "browser": "wasm-cairo.js",
+  "types": "wasm-cairo.d.ts"
+}

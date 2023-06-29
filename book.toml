@@ -14,7 +14,7 @@ after = ["links"]
 [output.html]
 git-repository-url = "https://github.com/cairo-book/cairo-book.github.io/"
 edit-url-template = "https://github.com/cairo-book/cairo-book.github.io/edit/main/{path}"
-playground.runnable = false
+playground.runnable = true
 
 [output.cairo]
 output-dir = "cairo-programs"
