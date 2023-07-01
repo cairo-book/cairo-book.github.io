@@ -1,29 +1,46 @@
 # Macros
 
-The Cairo language has some plugins that allows developers to simplify their code. They are called `inline_macros` and are a way of writing code that writes code. It is easier to understand with an example.
+The Cairo language has some plugins that allows developers to simplify their code. They are called `inline_macros` and are a way of writing code that generates other code. In Cairo, there are only two `macros`: `array![]` and `consteval_int!()`.
 
-Here is a function that prints the `felt252` passed to it.
+### Let's start by `array!`
 
-```rust
-fn print_felt252(message: felt252) {
-    let mut arr = Default::default();
-    arr.append(message);
-    print(arr);
-}
-```
+Sometimes, we need to create arrays with values that are already known at compile time. The basic way of doing that is redundant. You would first declare the array and then append one by one every values. `array!` creates a simpler way of doing this task by combining the two steps.
+At compile-time, the compiler will create an array and append sequencially every values passed to the `array!` macro.
 
-And this is the exact same function with a macro `array!` instead.
+Without `array!`:
 
 ```rust
-fn print_felt252(message: felt252) {
-    print(array![message]);
-}
+let mut input = Default::default();
+input.append(0x0000000000000001);
+input.append(0x0000000000000002);
+input.append(0x0000000000000003);
+input.append(0x0000000000000004);
+input.append(0x0000000000000005);
+input.append(0x0000000000000006);
+input.append(0x0000000000000007);
+input.append(0x0000000000000008);
+input.append(0x0000000000000009);
 ```
 
-In Cairo, there are only two `macros`: `array![]` and `consteval_int!()`.
+With `array!`:
 
-`array!` creates an array with the elements passed in paramater.
-`consteval_int!` performs the computations passed to it before returning the constant result.
+```rust
+let mut input = array![
+        0x0000000000000001,
+        0x0000000000000002,
+        0x0000000000000003,
+        0x0000000000000004,
+        0x0000000000000005,
+        0x0000000000000006,
+        0x0000000000000007,
+        0x0000000000000008,
+        0x0000000000000009,
+    ];
+```
+
+### `consteval_int!`
+
+In some situtations, a developer might need to declare a constant that is the result of a computation of integers. To compute a constant expression and use its result at compile time, it is required to use the `consteval_int!` macro.
 
 Here is an example of `consteval_int!`:
 
@@ -31,5 +48,4 @@ Here is an example of `consteval_int!`:
 const a: felt252 = consteval_int!(2 * 2 * 2);
 ```
 
-What happens under-the-hood is that the `macros` will be expanded and evaluated before the compiler interprets the code.
-Hence, if we take the previous example of `consteval_int!`, `const a: felt252 = consteval_int!(2 * 2 * 2);` will be interprated as `const a: felt252 = 8;` by the compiler.
+This will be interprated as `const a: felt252 = 8;` by the compiler.
