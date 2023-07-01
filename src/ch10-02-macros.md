@@ -10,32 +10,13 @@ At compile-time, the compiler will create an array and append sequencially every
 Without `array!`:
 
 ```rust
-let mut input = Default::default();
-input.append(0x0000000000000001);
-input.append(0x0000000000000002);
-input.append(0x0000000000000003);
-input.append(0x0000000000000004);
-input.append(0x0000000000000005);
-input.append(0x0000000000000006);
-input.append(0x0000000000000007);
-input.append(0x0000000000000008);
-input.append(0x0000000000000009);
+{{#include ../listings/ch10-advanced-features/no_listing_02_array_macro.cairo:4:9}}
 ```
 
 With `array!`:
 
 ```rust
-let mut input = array![
-        0x0000000000000001,
-        0x0000000000000002,
-        0x0000000000000003,
-        0x0000000000000004,
-        0x0000000000000005,
-        0x0000000000000006,
-        0x0000000000000007,
-        0x0000000000000008,
-        0x0000000000000009,
-    ];
+{{#include ../listings/ch10-advanced-features/no_listing_02_array_macro.cairo:11:11}}
 ```
 
 ### `consteval_int!`
