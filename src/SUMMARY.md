@@ -76,6 +76,7 @@
 
 - [Advanced Features](ch10-00-advanced-features.md)
   - [Operator Overloading](ch10-01-operator-overloading.md)
+  - [Macros](ch10-02-macros.md)
 
 ## Starknet smart contracts
 
