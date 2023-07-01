@@ -52,6 +52,41 @@ impl RectangleGeometry of RectangleGeometryTrait {
 
 In the aforementioned code, there is no need to manually define the trait. The compiler will automatically handle its definition, dynamically generating and updating it as new functions are introduced.
 
+Implements annotated with the `#[generate_trait]` attribute are programmed to automatically generate trait and export on a compilation like this bottom code.
+
+```rust
+trait RectangleGeometryTrait {
+    fn boundary(self: Rectangle) -> u64;
+    fn area(self: Rectangle) -> u64;
+}
+```
+
+This plugin also supports generic implementations. If use `#[generate_trait]` instead of defining WalletTrait as in the previous generic chapter, it will be looks like this.
+
+```rust
+#[derive(Copy, Drop)]
+struct Wallet<T> {
+    balance: T
+}
+
+#[generate_trait]
+impl WalletImpl<T, impl TCopy: Copy<T>> of WalletTrait<T> {
+    fn balance(self: @Wallet<T>) -> T {
+        return *self.balance;
+    }
+}
+```
+
+Every generic type and impl will all reflect on auto-generated trait by the plugin. Because generated trait must have generic args matching the impl's generic params.
+
+```rust
+trait WalletTrait<T, impl TCopy: Copy<T>> {
+    fn balance(self: @Wallet<T>) -> T;
+}
+```
+
+If you take a look at [GenerateTraitPlugin](https://github.com/starkware-libs/cairo/blob/main/crates/cairo-lang-plugins/src/plugins/generate_trait.rs) better to understand how this attribute works in deep underhood in compiler level.
+
 ## Parameter `self`
 
 In the example above, `self` is a special parameter. When a parameter with name `self` is used, the implemented functions are also [attached to the instances of the type as methods](ch04-03-method-syntax.md#defining-methods). Here's an illustration,
