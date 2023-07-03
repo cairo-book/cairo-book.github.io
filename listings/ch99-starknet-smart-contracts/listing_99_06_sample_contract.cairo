@@ -39,7 +39,7 @@ trait ITokenWrapper<TContractState> {
 //ANCHOR: here
 //**** Specify interface here ****//
 #[starknet::contract]
-mod TokenWrapper {
+mod token_wrapper {
     use super::IERC20DispatcherTrait;
     use super::IERC20Dispatcher;
     use super::ITokenWrapper;

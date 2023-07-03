@@ -1,5 +1,5 @@
 #[starknet::contract]
-mod Contract {
+mod contract {
     use starknet::ContractAddress;
     //ANCHOR: here
     #[storage]

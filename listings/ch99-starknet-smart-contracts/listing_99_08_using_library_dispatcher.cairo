@@ -33,7 +33,7 @@ trait ITokenWrapper<TContractState> {
 
 //ANCHOR: here
 #[starknet::contract]
-mod TokenWrapper {
+mod token_wrapper {
     use super::IERC20DispatcherTrait;
     use super::IERC20LibraryDispatcher;
     use starknet::ContractAddress;

@@ -4,7 +4,7 @@ trait IContract<TContractState> {
 }
 
 #[starknet::contract]
-mod Contract {
+mod contract {
     use super::IContract;
     #[storage]
     struct Storage {

@@ -1,5 +1,5 @@
 #[starknet::contract]
-mod AccessControlContract {
+mod access_control_contract {
     use starknet::ContractAddress;
     use starknet::get_caller_address;
 

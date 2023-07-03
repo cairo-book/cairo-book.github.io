@@ -156,7 +156,7 @@ Example:
 
 ```rust
 #[starknet::contract]
-mod Contract {
+mod contract {
     #[derive(Drop, storage_access::StorageAccess)]
     struct A {
         item_one: felt252,
